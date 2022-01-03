@@ -74,3 +74,10 @@ jobs:
         cmake \
           --install ${GITHUB_WORKSPACE}/build \
           --config ${{ matrix.config.build_type }}
+
+    - name: Upload artifact
+      if: runner.os == 'Windows'
+      uses: actions/upload-artifact@v2
+      with:
+        name: vgmplay-${{ matrix.config.compiler }}-${{ matrix.config.build_type }}
+        path: install/bin/vgmplay.exe
